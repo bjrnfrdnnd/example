@@ -9,7 +9,7 @@ import pandas as pd
 import numpy as np
 import pkg_resources
 
-from example import print_hi, setup_logging, setup_pandas_printing
+from example.example import print_hi, setup_logging, setup_pandas_printing
 
 logger = logging.getLogger(__name__)
 
@@ -41,7 +41,7 @@ def main(argv):
 
     setup_pandas_printing()
     size_ = 24
-    df = pd.DataFrame(data=np.random.random((size_, size_)), columns=list(string.ascii_uppercase)[:size_0])
+    df = pd.DataFrame(data=np.random.random((size_, size_)), columns=list(string.ascii_uppercase)[:size_])
     print(df)
 
     logger.info('df')
