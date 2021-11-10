@@ -5,17 +5,23 @@ import string
 import sys
 from configparser import ConfigParser, ExtendedInterpolation
 
+import importlib_resources
 import pandas as pd
 import numpy as np
 import pkg_resources
 
+import example
 from example.example import print_hi, setup_logging, setup_pandas_printing
 
 logger = logging.getLogger(__name__)
 
-EXAMPLE_DATA_FILE_NAME = pkg_resources.resource_filename('example', '../../data/example_data.txt')
-CONFIG_FN = pkg_resources.resource_filename('example', '../../config/config.ini')
-LOGGING_FN = pkg_resources.resource_filename('example', '../../config/logging.ini')
+BASE_DIR: pathlib.Path = importlib_resources.files(example) # this is a traversable. As this is not a zip file, but an actual path, this works
+DATA_DIR = BASE_DIR.parent.parent / 'data'
+CONFIG_DIR = BASE_DIR.parent.parent / 'config'
+CONFIG_FN = CONFIG_DIR / 'config.ini'
+LOGGING_FN = CONFIG_DIR / 'logging.ini'
+EXAMPLE_DATA_FILE_NAME = DATA_DIR / 'example_data.txt'
+
 
 def main(argv):
     print_hi('example')
@@ -37,7 +43,7 @@ def main(argv):
     print(db_username)
 
     print(LOGGING_FN)
-    setup_logging(logging_fn=LOGGING_FN)
+    setup_logging(logging_fn=LOGGING_FN.resolve().__str__())
 
     setup_pandas_printing()
     size_ = 24

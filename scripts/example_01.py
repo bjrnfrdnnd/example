@@ -1,6 +1,6 @@
 import sys
 
-from example import print_hi
+from example.example import print_hi
 
 
 def main(argv):

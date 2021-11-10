@@ -2,7 +2,7 @@ import sys
 
 import pkg_resources
 
-from example import print_hi
+from example.example import print_hi
 
 EXAMPLE_DATA_FILE_NAME = pkg_resources.resource_filename('example', 'data/example_data')
 
